@@ -33,6 +33,7 @@ public class BoardController {
 		//3,Alex,Good Morning,2016-11-20 17:30
 		//4,Betty,I'm happy,2016-12-25 17:30
 		//5,John,Thank you,2017-2-6 17:30
+		/*
 		ArticleBean a=new ArticleBean();
 		a.setSeq("1");
 		a.setUid("James");
@@ -118,6 +119,6 @@ public class BoardController {
  		}
 		System.out.println(list);
 		// 삭제가 끝나면 해당글이 없다고 출력함
-		
+		 * */
 	}
 }

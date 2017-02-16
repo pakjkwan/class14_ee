@@ -1,7 +1,7 @@
 package domain;
 
 public class ArticleBean {
-	private String seq,uid,title,content,regdate,readCount;
+	private String seq,id,title,content,regdate,readCount;
 
 	public String getSeq() {
 		return seq;
@@ -10,13 +10,13 @@ public class ArticleBean {
 	public void setSeq(String seq) {
 		this.seq = seq;
 	}
-
-	public String getUid() {
-		return uid;
+	
+	public String getId() {
+		return id;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -52,6 +52,6 @@ public class ArticleBean {
 	}
 	@Override
 	public String toString() {
-		return String.format("[%s | %s | %s | %s | %s]", seq,uid,title,regdate,"0");
+		return String.format("[%s | %s | %s | %s | %s]", seq,id,title,regdate,"0");
 	}
 }
