@@ -11,4 +11,5 @@ public interface BoardDAO {
 	public List<ArticleBean> selectAll()throws Exception;
 	public int update(ArticleBean param)throws Exception;
 	public int delete(ArticleBean param)throws Exception;
+	public int count() throws Exception;
 }

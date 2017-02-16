@@ -47,3 +47,7 @@ SELECT * FROM Article WHERE art_seq=1;
 UPDATE Article SET content = '자유게시판' WHERE id='hong';
 --DELETE
 DELETE FROM Article WHERE hong = 'hong';
+
+SELECT art_seq,id,title,content,regdate,readCount  FROM Article WHERE title LIKE '%안%';
+
+

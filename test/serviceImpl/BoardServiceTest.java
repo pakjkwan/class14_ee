@@ -3,6 +3,9 @@ package serviceImpl;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -16,16 +19,22 @@ public class BoardServiceTest {
 		assertTrue(service.add(bean)==1);
 	}
 
-	@Test 
+	@Test @Ignore
 	public void testFindOne() throws Exception {
 		ArticleBean bean=new ArticleBean();
 		bean.setSeq("1");
 		assertTrue(service.findOne(bean).getId().equals("hong"));
 	}
 
-	@Test  @Ignore
-	public void testFindSome() {
-		fail("Not yet implemented");
+	@Test  
+	public void testFindSome() throws Exception {
+		String[] arr=new String[2];
+		arr[0]="title";
+		arr[1]="안";
+		List<ArticleBean> list=new ArrayList<ArticleBean>();
+		list=service.findSome(arr);
+		
+		assertTrue(list.get(0).getId().equals("hong"));
 	}
 
 	@Test  @Ignore

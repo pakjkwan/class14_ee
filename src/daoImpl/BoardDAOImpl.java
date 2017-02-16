@@ -53,8 +53,9 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<ArticleBean> selectByWord(String[] param) throws Exception {
 		List<ArticleBean> list=new ArrayList<>();
 		ArticleBean bean=null;
-		String sql="SELECT seq,id,title,content,regdate,readCount "
+		String sql="SELECT art_seq,id,title,content,regdate,readCount "
 				+ " FROM Article WHERE "+param[0]+" LIKE '%"+param[1]+"%'";
+		System.out.println("DAO에서 실행된 쿼리:"+sql);
 		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
 				.getConnection().createStatement();
 		ResultSet rs=stmt.executeQuery(sql);
@@ -63,7 +64,7 @@ public class BoardDAOImpl implements BoardDAO{
 			bean.setContent(rs.getString("content"));
 			bean.setReadCount(rs.getString("readCount"));
 			bean.setRegdate(rs.getString("regDate"));
-			bean.setSeq(rs.getString("seq"));
+			bean.setSeq(rs.getString("art_seq"));
 			bean.setTitle(rs.getString("title"));
 			bean.setId(rs.getString("id"));
 			list.add(bean);
@@ -111,6 +112,11 @@ public class BoardDAOImpl implements BoardDAO{
 				.getConnection().createStatement();
 		rs=stmt.executeUpdate(sql);
 		return rs;
+	}
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

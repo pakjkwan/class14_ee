@@ -8,4 +8,5 @@ public interface BoardService {
 	public List<ArticleBean> list()throws Exception;
 	public int update(ArticleBean param)throws Exception;
 	public int delete(ArticleBean param)throws Exception;
+	public int count();
 }
