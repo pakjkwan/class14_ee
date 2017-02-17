@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 	</div>
 	<ul class="gnb width_full_size text_center bg_color_darkgray" style="height: 40px">
 		<li><a href="html/join.html">회원가입</a></li>
-		<li><a href="html/login.html">로그인</a><li>
+		<li><a href="<%=application.getContextPath()%>/login.do">로그인</a><li>
 		<li><a href="html/board.html">게시판</a><li>
 		<li><a href="html/admin.html">관리자</a><li>
 	</ul>
