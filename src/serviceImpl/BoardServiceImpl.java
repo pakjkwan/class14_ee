@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService{
 	public List<ArticleBean> list()throws Exception {
 		List<ArticleBean> list=new ArrayList<>();
 		list=dao.selectAll();
+		System.out.println("=== 게시판 서비스 리스트==="+list);
 		return list;
 	}
 
@@ -64,8 +65,14 @@ public class BoardServiceImpl implements BoardService{
 	}
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=0;
+		try {
+			count = dao.count();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 }

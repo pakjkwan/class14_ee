@@ -92,7 +92,7 @@ a:active {color: #408080;} /* selected link */
 }
 /* Change the link color to #111 (black) on hover */
 .gnb li a:hover {
-    background-color: #111;
+    background-color: #ff0000;
 }
 
 .lnb {
@@ -129,6 +129,29 @@ a:active {color: #408080;} /* selected link */
     background-color: #555;
     color: white;
 }
+.paging {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+.paging li {
+    float: left;
+}
+.paging li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+.paging li a:hover {
+    background-color: white;
+}
+
+
 #admin_tab tr td{height:40px;}
 #admin_tab tr th{height:40px;}
 

@@ -76,7 +76,7 @@ public class BoardDAOImpl implements BoardDAO{
 	public List<ArticleBean> selectAll() throws Exception {
 		List<ArticleBean> list=new ArrayList<>();
 		ArticleBean bean=null;
-		String sql=String.format("SELECT seq,id,title,content,regdate,readCount "
+		String sql=String.format("SELECT art_seq,id,title,content,regdate,readCount "
 				+ " FROM %s","Article");
 		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
 				.getConnection().createStatement();
@@ -86,7 +86,7 @@ public class BoardDAOImpl implements BoardDAO{
 			bean.setContent(rs.getString("content"));
 			bean.setReadCount(rs.getString("readCount"));
 			bean.setRegdate(rs.getString("regDate"));
-			bean.setSeq(rs.getString("seq"));
+			bean.setSeq(rs.getString("art_seq"));
 			bean.setTitle(rs.getString("title"));
 			bean.setId(rs.getString("id"));
 			list.add(bean);
@@ -115,8 +115,15 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	@Override
 	public int count() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=0;
+		String sql="SELECT COUNT(*) AS count FROM Article";
+		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
+				.getConnection().createStatement();
+		ResultSet rs=stmt.executeQuery(sql);
+		if(rs.next()){
+			count=Integer.parseInt(rs.getString("COUNT"));
+		}
+		return count;
 	}
 
 }

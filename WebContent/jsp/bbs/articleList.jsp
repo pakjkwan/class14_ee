@@ -12,9 +12,16 @@
 	<link rel="stylesheet" href="../../css/hanbit.css" />
 </head>
 <body>
+<%
+BoardService service=BoardServiceImpl.getInstance();
+List<ArticleBean> list=service.list();
+int rowCount=5;
+int card=service.count();
+%>
 <div style="width:90%">
 <table class="table_default margin_center" 
   style="width: 500px; margin-top: 200px">
+  	<tr><th colspan="5" style="text-align: right;">총게시글수: <%=card%> 건</th></tr>
 	<tr>
 		<th>No</th>
 		<th>ID</th>
@@ -23,51 +30,34 @@
 		<th>조회수</th>
 	</tr>
 <% 
-	BoardService service=BoardServiceImpl.getInstance();
-	List<ArticleBean> list=service.list();
-	int cardinality=5;
-	int articleCount=service.count();
-	int pageCount=0,blockSize=5,blockCount=0;
-	if(articleCount%cardinality==0){
-		pageCount=articleCount/cardinality;
-	}else{
-		pageCount=articleCount/cardinality+1;
-	}
-	if(pageCount%blockSize==0){
-		blockCount=pageCount/blockSize;
-	}else{
-		blockCount=pageCount/blockSize+1;
-	}
-	int blockNo=0;
-	int blockStart=0;
-	int blockEnd=0;
-	for(int i=0;i<cardinality;i++){
+	
+	for(int i=0;i<rowCount;i++){
 %>
 	<tr>
 		<td><%=list.get(i).getSeq()%> </td>
 		<td><%=list.get(i).getId()%></td>
-		<td><%=list.get(i).getTitle()%></td>
+		<td><a href=""><%=list.get(i).getTitle()%></a></td>
 		<td><%=list.get(i).getRegdate()%></td>
 		<td><%=list.get(i).getReadCount()%></td>
 	</tr>
 <% 
 	}
 %>
-	<tr>
-	<td>
-	<div>
-		<%="◀" %>
 		
-		 <%=blockStart %>
-		 
-		 <%=blockEnd %>   
-		 
-		<%="▶" %>
-		
-	</div>
-	</td>
-	</tr>
 </table>
+	<nav style="width: 500px;margin:0 auto;background: gray; ">
+	<ul class="gnb" >
+<% 
+	int pageCount=(card%rowCount==0)?card/rowCount:card/rowCount+1;
+	for(int i=0;i<pageCount;i++){
+%>
+	<li style="text-align: center;width:30px" >
+	<a href=""><%= i+1  %></a>
+		
+	</li>
+<% }%>	
+	</ul>
+</nav>
 </div>    
 
 </body>
