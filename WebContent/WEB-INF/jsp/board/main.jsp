@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,11 @@
 		<li><a href="board.html">게시판</a><li>
 		<li><a href="admin.html">관리자</a><li>
 	</ul>
+	
 </div>
 <div style="height: 100px"></div>
 <div id="container" class="width_full_size" style="height: 600px">
-<h1>예매내역</h1>
+
 </div>
 <div id="footer" class="width_full_size" style="height: 80px; border-top: 2px solid #5a5a5a;">
 	<dl class="notice" style="margin-left: 40px">
@@ -38,6 +40,6 @@
 	</dl>
 	<address>&copy; <strong><a href="http://www.navercorp.com/" target="_blank">NAVER Corp.</a></strong></address>
 	</div>
-</div>
+	</div>
 </body>
 </html>

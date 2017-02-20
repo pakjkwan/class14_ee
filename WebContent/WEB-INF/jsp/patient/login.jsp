@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="service.MemberService" %>
-<%@ page import="serviceImpl.MemberServiceImpl"%>
-<%@ page import="domain.MemberBean" %>
+<%@ page import="service.PatientService" %>
+<%@ page import="serviceImpl.PatientServiceImpl"%>
+<%@ page import="domain.PatientBean" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,10 +10,10 @@
 </head>
 <body>
 <%
-	MemberService service = MemberServiceImpl.getInstance();
-	MemberBean member = new MemberBean();
-	member.setId(request.getParameter("id"));
-	member.setPassword(request.getParameter("password"));
+	PatientService service = PatientServiceImpl.getInstance();
+	PatientBean member = new PatientBean();
+	member.setPatID(request.getParameter("id"));
+	member.setPatPass(request.getParameter("password"));
 	boolean check = service.login(member);
 	if(check){
 %>

@@ -1,10 +1,17 @@
 package domain;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import constants.Database;
-public class DatabaseBean {
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+@Data 
+public class DatabaseBean implements Serializable{
+	private static final long serialVersionUID = 1L;
+	@Getter @Setter
 	private String driver,url,username,password;
 	private Connection connection;
 	public DatabaseBean(String driver,String url,

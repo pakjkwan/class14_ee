@@ -1,17 +1,17 @@
 package util;
 
-import dao.MemberDAO;
-import daoImpl.MemberDAOImpl;
-import domain.MemberBean;
+import dao.PatientDAO;
+import daoImpl.PatientDAOImpl;
+import domain.PatientBean;
 public class DAOTest {
 	public static void main(String[] args) {
-		MemberDAO dao=new MemberDAOImpl();
-		MemberBean member=new MemberBean();
+		PatientDAO dao=new PatientDAOImpl();
+		PatientBean patient=new PatientBean();
 		try {
-			member = MemberDAOImpl.getInstance().selectById("hong");
+			patient = PatientDAOImpl.getInstance().selectById("hong");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("회원이름:"+member.getName());
+		System.out.println("회원이름:"+patient.getPatName());
 	}
 }
