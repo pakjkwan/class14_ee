@@ -13,10 +13,10 @@
 		<a href="../index.html"><img src="images/index/index_logo.png"></a>
 	</div>
 	<ul class="gnb width_full_size text_center bg_color_darkgray" style="height: 40px">
-		<li><a href="<%=application.getContextPath()%>/patient/registerForm.do">회원가입</a></li>
-		<li><a href="<%=application.getContextPath()%>/patient/loginForm.do">로그인</a><li>
-		<li><a href="html/board.html">게시판</a><li>
-		<li><a href="<%=application.getContextPath()%>/admin/loginForm.do">관리자</a><li>
+		<li><a href="<%=application.getContextPath()%>/patient.do?action=move&page=registerForm">회원가입</a></li>
+		<li><a href="<%=application.getContextPath()%>/patient.do?action=move&page=loginForm">로그인</a><li>
+		<li><a href="<%=application.getContextPath()%>/board.do?action=move&page=main">게시판</a><li>
+		<li><a href="<%=application.getContextPath()%>/admin.do?action=move&page=loginForm">관리자</a><li>
 	</ul>
 </div>
 <div style="height: 100px"></div>
