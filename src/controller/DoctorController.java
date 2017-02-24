@@ -6,36 +6,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import domain.DoctorBean;
+import domain.PatientBean;
+import service.DoctorService;
+import service.PatientService;
+import serviceImpl.DoctorServiceImpl;
+import serviceImpl.PatientServiceImpl;
+import util.DispatcherServlet;
+import util.Separator;
 
 /**
  * Servlet implementation class DoctorController
  */
-@WebServlet("/DoctorController")
+@WebServlet("/doctor.do")
 public class DoctorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DoctorController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void service(
+			HttpServletRequest request, 
+			HttpServletResponse response)
+					throws ServletException, IOException { 
+		HttpSession session=request.getSession();
+		
+		DoctorService service=DoctorServiceImpl.getInstance();
+		DoctorBean bean=new DoctorBean();
+		Separator.init(request, response);
+		switch (Separator.command.getAction()) {
+		case "move":DispatcherServlet.send(request, response);
+			break;
+		
+		default:
+			break;
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -8,6 +8,10 @@ public class PatientServiceImpl implements PatientService{
 	private PatientDAO dao;
 	private PatientBean session;
 	private static PatientServiceImpl instance=new PatientServiceImpl();
+	public PatientBean getSession(){
+		System.out.println("###세션ID:"+session.getPatID());
+		return session;
+	}
 	public static PatientServiceImpl getInstance() {
 		return instance;
 	}
@@ -26,15 +30,13 @@ public class PatientServiceImpl implements PatientService{
 	}
 
 	@Override
-	public boolean login(PatientBean patient)throws Exception {
-		boolean flag=false;
-		/*PatientBean temp=this.findById(patient.getPatID());
+	public PatientBean login(PatientBean patient)throws Exception {
+		/*
 		if(patient.getPatPass().equals(temp.getPassword())){
-			session=temp;
 			flag=true;
 		}*/
-		PatientBean pat=this.findById(patient.getPatID());
-		return flag;
+		session=this.findById(patient.getPatID());
+		return session;
 	}
 
 	@Override
@@ -48,8 +50,14 @@ public class PatientServiceImpl implements PatientService{
 	}
 	@Override
 	public boolean logout() throws Exception {
-		session=null;
 		return true;
+	}
+	@Override
+	public String getBirth(String patJumin) {
+		String birth=session.getPatJumin();
+		// String birth=patJumin;
+		System.out.println("생년월일2"+birth);
+		return birth;
 	}
 
 }
