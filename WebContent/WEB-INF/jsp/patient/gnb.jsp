@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<ul  class="gnb width_full_size" style="margin: 0px;">
+<ul id="patGnb"  class="gnb width_full_size" style="margin: 0px;">
 	<li><a class="text_no_underline color_black" href="${context}/home.do?action=move&page=main">홈으로</a></li>
 	<li><a class="text_no_underline color_black" href="${context}/patient.do?action=mypage&page=detail">마이페이지</a></li>
 	<li><a class="text_no_underline color_black" href="${context}/patient.do?action=move&page=treatmentList">진료기록</a></li>

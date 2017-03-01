@@ -14,8 +14,8 @@
 	PatientBean member = new PatientBean();
 	member.setPatID(request.getParameter("id"));
 	member.setPatPass(request.getParameter("password"));
-	boolean check = service.login(member);
-	if(check){
+//	boolean check = service.login(member);
+	if(true){
 %>
 	<%= request.getParameter("id")%> 님, 
 	<a href="">내정보</a> <input type="button" value="로그아웃" />

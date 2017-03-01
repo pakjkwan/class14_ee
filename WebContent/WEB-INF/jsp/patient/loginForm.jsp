@@ -2,7 +2,7 @@
 <jsp:include page="../common/top.jsp"/>
 <jsp:include page="../common/header.jsp"/>
 <div id="container" class="width_full_size" style="height: 200px;position: relative;top: 100px">
-<form action="${context}/patient.do" method="post" style="width: 20%;" class="margin_center">
+<form id="loginForm">
 <table>
 	<tr>
 		<td colspan="3"><span style="font-size: 20px;">로그인 또는
@@ -31,12 +31,26 @@
 </table>
 <input type="hidden" name="action" value="login" />
 <input type="hidden" name="page" value="main" />
-<input type="submit" value="로그인" />
+<input type="button" value="로그인" />
 </form>
 </div>
 <%-- <jsp:include page="../common/footer.jsp"/> --%>
 <script>
 $(function() {
-	
+	var $loginForm=$('#loginForm');
+	$loginForm.addClass('margin_center').css('width','20%');
+	var tab=$loginForm.find('table');
+	$loginForm.find('input[value=로그인]').click(function(){
+		$loginForm.attr("action", "${context}/patient.do");
+		$loginForm.attr("method", "post");
+		var idVal=tab.find('input[name=id]').val();
+		var pwVal=tab.find('input[name=password]').val(); 
+		if(idVal==''||pwVal==''){
+			alert('값을 먼저 입력해주세요');
+		}else{
+			alert(' 입력한 ID,PW 값 ID='+idVal+',PW='+pwVal);
+			$loginForm.submit();
+		}
+	});
 });
 </script>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,6 +57,34 @@ public class PatientController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			break;
+		case "register":
+			String id=request.getParameter("id");
+			String email=request.getParameter("email");
+			String password=request.getParameter("password");
+			String mBirth=request.getParameter("birth");
+			String month=request.getParameter("month");
+			String date=request.getParameter("date");
+			String telecom=request.getParameter("telecom");
+			String phoneNo=request.getParameter("phoneNo");
+			String rdBtn=request.getParameter("rdBtn");
+			String[] ckbox=(String[]) request.getParameterMap().get("ckbox");
+			ArrayList<String> list=new ArrayList<>();
+			list.add(id);
+			list.add(email);
+			list.add(password);
+			list.add(mBirth);
+			list.add(month);
+			list.add(date);
+			list.add(telecom);
+			list.add(phoneNo);
+			list.add(rdBtn);
+			String ckbox2="";
+			for(String s:ckbox){
+				ckbox2+=s+",";
+			}
+			list.add(ckbox2);
+			System.out.println(list);
 			break;
 		default:
 			break;

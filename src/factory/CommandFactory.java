@@ -8,7 +8,7 @@ public class CommandFactory {
 			String page){
 		Command cmd=null;
 		switch (action) {
-		case "move": case "login": case "logout": case "mypage":
+		case "move": case "login": case "logout": case "mypage": case "register":
 			cmd=new MoveCommand(directory, action, page);
 			
 			break;
