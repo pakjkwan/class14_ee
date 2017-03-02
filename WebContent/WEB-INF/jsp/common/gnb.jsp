@@ -30,7 +30,7 @@ $(function(){
     	goPage('${context}/admin.do','move','loginForm');
 	});
     $commonGnb.find('li:nth-child(5)').click(function(){
-    	goPage('${context}/admin.do','move','loginForm');
+    	goPage('${context}/board.do','move','articleList');
 	});
 });
 </script>

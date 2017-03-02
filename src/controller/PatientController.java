@@ -14,6 +14,7 @@ import domain.PatientBean;
 import service.PatientService;
 import serviceImpl.PatientServiceImpl;
 import util.DispatcherServlet;
+import util.ParamMap;
 import util.Separator;
 
 @WebServlet("/patient.do")
@@ -60,15 +61,19 @@ public class PatientController extends HttpServlet {
 			break;
 		case "register":
 			String id=request.getParameter("id");
+			String name=request.getParameter("name");
+			String addr=request.getParameter("addr");
 			String email=request.getParameter("email");
 			String password=request.getParameter("password");
 			String mBirth=request.getParameter("birth");
 			String month=request.getParameter("month");
 			String date=request.getParameter("date");
 			String telecom=request.getParameter("telecom");
-			String phoneNo=request.getParameter("phoneNo");
-			String rdBtn=request.getParameter("rdBtn");
-			String[] ckbox=(String[]) request.getParameterMap().get("ckbox");
+			String phoneNo1=request.getParameter("phoneNo1");
+			String phoneNo2=request.getParameter("phoneNo2");
+			String phoneNo3=request.getParameter("phoneNo3");
+			String gender=request.getParameter("gender");
+			String job=ParamMap.getValues(request, "job");
 			ArrayList<String> list=new ArrayList<>();
 			list.add(id);
 			list.add(email);
@@ -77,14 +82,33 @@ public class PatientController extends HttpServlet {
 			list.add(month);
 			list.add(date);
 			list.add(telecom);
-			list.add(phoneNo);
-			list.add(rdBtn);
-			String ckbox2="";
-			for(String s:ckbox){
-				ckbox2+=s+",";
-			}
-			list.add(ckbox2);
+			list.add(phoneNo1+"-"+phoneNo2+"-"+phoneNo3);
+			list.add(gender);
+			list.add(job);
 			System.out.println(list);
+			String patJumin="";
+			bean.setPatID(id);
+			bean.setPatAddr(addr);
+			bean.setPatEmail(email);
+			bean.setPatGen(gender);
+			bean.setPatJob(job);
+			bean.setPatJumin(patJumin);
+			bean.setPatName(name);
+			bean.setPatPass(password);
+			bean.setPatPhone(phoneNo1+"-"+phoneNo2+"-"+phoneNo3);
+			try {
+				if(service.join(bean)==1){
+					System.out.println("====회원가입 성공===");
+					DispatcherServlet.send(request, response);
+				}else{
+					System.out.println("====회원가입 실패===");
+					Separator.command.setPage("registerForm");
+					Separator.command.setView();
+					DispatcherServlet.send(request, response);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		default:
 			break;

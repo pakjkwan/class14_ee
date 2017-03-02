@@ -6,32 +6,63 @@
 <form id="registerForm" action="" style="width:40%;margin-top:35px" class="width_full_size margin_center">
 <table>
 <tr>
-       <td class="color_blue">한글 또는 영문으로 입력해 주세요.
-       		<input type="text" name="id" value="ID"/>
-              <input type="button" name="check out" value="중복확인"/><br />
-       
+       <td class="color_blue">담당의사
+       <select name="doctor" >
+		      <option value="" selected>의사선택</option>
+              <option value="dhong">피부과: 홍길동</option>
+              <option value="dahn">내과: 안성기</option>
+              <option value="dkim">외과: 김민종</option>
+              <option value="dkim2">소아과: 김연아</option>
+       </select>
+       <select name="nurse" >
+              <option value="">간호사선택</option>
+              <option value="nkim">김은영</option>
+              <option value="nyoon">윤성애</option>
+              <option value="nshin">신지원</option>
+              <option value="nyou">유정화</option>
+        </select>
        </td>
 </tr>
 <tr>
-       <td>
-              <input type="text" name="email" value="E-mail"/>
-              <input type="button" name="check out" value="중복확인"/><br />
-              LPOINT 아이디는 자주 사용하시는 이메일 주소로 이력해 주세요.     
+    <td class="color_blue"> ID
+    		<input type="text" name="id" placeholder="ID"/>
+         <input type="button" name="check out" value="중복확인"/><br />
+    </td>
+</tr>
+
+<tr>
+     <td class="color_red"> 
+     		영문 소문자 하나 이상을 포함한 영문 또는 영문+숫자만 입력해 주세요.
+     </td>
+</tr>
+<tr>
+     <td class="color_blue">이 름
+     		<input type="text" name="name"/>
+            <input type="button" name="check out" value="중복확인"/><br />
+     </td>
+</tr>
+<tr>
+     <td class="color_blue"> 이메일
+            <input type="text" name="email"/>
+     </td>
+</tr>
+<tr>
+     <td class="color_blue">비밀번호
+            <input type="text" name="password" />
+     </td>
+</tr>
+<tr>
+     <td class="color_blue">비밀번호 확인
+            <input type="text" name="confirm" />
+     </td>
+</tr>
+<tr>
+       <td class="color_blue">주 소
+              <input type="text" name="addr" />
        </td>
 </tr>
 <tr>
-       <td>
-              <input type="text" name="password" value="비밀번호"/>
-              8~15자의 영문자,숫자,특수문자를 함께 입력해주세요.
-       </td>
-</tr>
-<tr>
-       <td>
-              <input type="text" name="confirm" value="비밀번호 확인"/>
-       </td>
-</tr>
-<tr>
-       <td>
+       <td class="color_blue">생년월일
        <select name="birth" >
 		      <option value="" selected>생년선택</option>
               <option value="1985">1985</option>
@@ -68,60 +99,48 @@
        </td>
 </tr>
 <tr>
-       <td>
+       <td class="color_blue">전화번호 <br />
               <select name="telecom" >
               <option value="SKT">SKT</option>
               <option value="KTF">KTF</option>
               <option value="LG">LG</option>
               </select>
-              <select name="phoneNo" >
+              <select name="phoneNo1" >
               <option value="SKT">010</option>
               <option value="KTF">019</option>
-              <option value="LG">017</option>
+              <option value="LG">017</option> 
               </select>-
-              <input type="text" />
+              <input type="text" name="phoneNo2" size="4"/>
               -
-              <input type="text" />
+              <input type="text" name="phoneNo3" size="4"/>
        </td>
 </tr>
 <tr>
+       <td class="color_blue">
+ 		직업 (두개이상 선택가능. 단 스텝은 병원관계자만 체크하세요)
+       </td>
+</tr>
+<tr> 
+<!-- 
+job: 회사원 employee 개발자 developer 스텝 staff 의사 doctor 간호사 nurse 관리자 admin
+ -->
        <td>
-       정보수신동의&nbsp;전체선택<input type="checkbox" name="ckbox" value="all select"/>
+     	<input type="checkbox" name="job" value="employee"/>회사원
+     	<input type="checkbox" name="job" value="develper"/>개발자
+     	<input type="checkbox" name="job" value="staff"/>스텝
+     	<input type="checkbox" name="job" value="doctor"/>의사
+     	<input type="checkbox" name="job" value="nurse"/>간호사
+     	<input type="checkbox" name="job" value="admin"/>관리자
        </td>
 </tr>
 <tr>
-       <td>
-       L.POINT
-       <input type="checkbox" name="ckbox" value="lpointEmail"/>E-MAIL
-       <input type="checkbox" name="ckbox" value="lpointSms"/>SMS
-       <br />
-       롯데시네마
-       <input type="checkbox" name=ckbox value="lotteEmail"/>E-MAIL
-       <input type="checkbox" name="ckbox" value="lotteSms"/>SMS
-       <br />
-       *정보수신동의를 하시면, 고객혜택 및 이벤트 등 다양한 정보를 받으실 수 있습니다.
+       <td class="color_blue">
+       성별<input type="radio" name="gender" value="m"/>남 |
+       <input type="radio" name="gender" value="f"  /> 여
        </td>
 </tr>
-<tr>
-       <td>
-       개인정보<br />
-       유효기간<input type="radio" name="rdBtn" value="del"/>탈퇴 시 파기
-       <input type="radio" name="rdBtn" value="1year"  /> 1년<br />
-       *개인정보 유효기간 경과 이후 개인정보를 분리 저장관리 또는 파기 합니다.
-       </td>
-</tr>
-<tr>
-       <td>
-       <p class="color_blue">*선택항목에 동의하지 않으셔도 정상적인 서비스를 이용하실 수 있습니다.</p>
-       </td>
-</tr>
-<tr>
-       <td>
-       <input type="button" name="back" value="이전" style=width:200px; />
-       <input type="button" name="back" value="다음" style=width:200px; />
-       
-       </td>
-</tr>
+
+
 </table>
 <input type="hidden" name="action" value="register" />
 <input type="hidden" name="page" value="main" />
@@ -135,7 +154,6 @@ $(function(){
 	$('input[name=submitBtn]').click(function(){
 		$registerForm.attr("action", "${context}/patient.do");
 		$registerForm.attr("method", "post");
-		alert('전송 직전');
 		$registerForm.submit();
 	});
 });

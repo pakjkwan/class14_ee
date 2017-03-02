@@ -79,6 +79,7 @@ CREATE TABLE Article(
 
 );
 
+
 -- dummy 입력 부분-- doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position
 -- SELECT * FROM Doctor;
 INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position) VALUES ('dlee', '1', '소아과', '이태정', 'M', '010-333-1340', 'ltj@hanbh.com', '과장');
@@ -147,3 +148,7 @@ INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VA
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('s_140226102', '140226102', 'dhong', 'nkim3',  'plee2',  '화상 크림약 처방' );
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('s_140303003', '140303003', 'dyou',  'npark',  'poh',    '입원치료' );
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('p_140308087', '140308087', 'dkim3', 'nlee2',  'psong',  '장염 입원치료' );
+
+
+SELECT * FROM nurse;
+
