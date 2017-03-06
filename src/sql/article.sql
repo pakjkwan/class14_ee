@@ -80,6 +80,13 @@ INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
 VALUES(art_seq.nextval, 'hong', '이상은', '끝까지 피가 부패뿐이다', '2017-02-09',7);
 INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
 VALUES(art_seq.nextval, 'hong', '석가는', '이상은 석가는 대중을 것이다', '2017-02-03',1);
+
+INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
+VALUES(art_seq.nextval, 'kim', '영락과', '투명하되 굳세게', '2016-06-06',5);
+INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
+VALUES(art_seq.nextval, 'kim', '이상은', '끝까지 피가 부패뿐이다', '2016-08-08',7);
+INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
+VALUES(art_seq.nextval, 'kim', '석가는', '이상은 석가는 대중을 것이다', '2016-09-09',1);
 --READ ALL
 SELECT art_seq, pat_id, title, content, regdate, readCount  FROM Article;
 --READ SOME

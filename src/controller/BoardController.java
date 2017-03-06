@@ -57,7 +57,9 @@ public class BoardController extends HttpServlet {
 			int nextBlock=blockStart+blockSize;
 			int blockEnd=0;
 			blockEnd=blockCount;
-			if(blockStart < pageCount){
+			System.out.println("블록이 항상 참이다: "+(blockStart + rowCount-1));
+			System.out.println("페이지카운트: "+pageCount);
+			if((blockStart+rowCount-1) < pageCount){
 				blockEnd=blockStart+blockSize-1;
 			}else{
 				blockEnd=pageCount;
