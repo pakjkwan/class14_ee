@@ -66,18 +66,22 @@ public class BoardDAOImpl implements BoardDAO{
 			bean.setRegdate(rs.getString("regDate"));
 			bean.setSeq(rs.getString("art_seq"));
 			bean.setTitle(rs.getString("title"));
-			bean.setId(rs.getString("id"));
+			bean.setId(rs.getString("pat_id"));
 			list.add(bean);
 		}
 		return list;
 	}
 
 	@Override
-	public List<ArticleBean> selectAll() throws Exception {
+	public List<ArticleBean> selectAll(int[] pageArr) throws Exception {
 		List<ArticleBean> list=new ArrayList<>();
 		ArticleBean bean=null;
-		String sql=String.format("SELECT art_seq,id,title,content,regdate,readCount "
-				+ " FROM %s","Article");
+		String sql=String.format("SELECT t2.*"
+	   +"\tFROM (SELECT ROWNUM seq,t.*" 
+       +"\tFROM (SELECT * FROM ARTICLE ORDER BY art_seq DESC) t) t2"
+       +"\tWHERE t2.seq BETWEEN %s AND %s", String.valueOf(pageArr[0]),
+       String.valueOf(pageArr[1]));
+		System.out.println("Board SQL :"+sql);
 		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
 				.getConnection().createStatement();
 		ResultSet rs=stmt.executeQuery(sql);
@@ -88,7 +92,7 @@ public class BoardDAOImpl implements BoardDAO{
 			bean.setRegdate(rs.getString("regDate"));
 			bean.setSeq(rs.getString("art_seq"));
 			bean.setTitle(rs.getString("title"));
-			bean.setId(rs.getString("id"));
+			bean.setId(rs.getString("pat_id"));
 			list.add(bean);
 		}
 		return list;

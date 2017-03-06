@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import handler.CommandHandler;
 import util.DispatcherServlet;
 
-public class GetCommand extends Command implements CommandHandler{
-    public GetCommand(String directory,
-    		String action,String page,String searchWord,String pageNo){
+public class ListCommand extends Command implements CommandHandler{
+    public ListCommand(
+    		String directory,
+    		String action,
+    		String page,
+    		String pageNO){
     	super.directory=directory;
 		super.action=action;
 		super.page=page;
-		super.searchWord=searchWord;
-		super.pageNo=pageNo;
+		super.pageNO=pageNO;
 		super.setView();
     }
 

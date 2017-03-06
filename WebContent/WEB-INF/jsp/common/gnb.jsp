@@ -35,7 +35,7 @@ $(function(){
 	});
     $commonGnb.find('li:nth-child(5)').click(function(){
     	alert('게시판 가기');
-    	goPage('${context}/board.do','move','articleList');
+    	goList('${context}/board.do','list','articleList','1');
 	});
 });
 </script>

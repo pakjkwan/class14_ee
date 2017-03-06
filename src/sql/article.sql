@@ -81,7 +81,7 @@ VALUES(art_seq.nextval, 'hong', '이상은', '끝까지 피가 부패뿐이다',
 INSERT INTO Article (art_seq, pat_id, title, content, regdate, readCount)
 VALUES(art_seq.nextval, 'hong', '석가는', '이상은 석가는 대중을 것이다', '2017-02-03',1);
 --READ ALL
-SELECT * FROM Article;
+SELECT art_seq, pat_id, title, content, regdate, readCount  FROM Article;
 --READ SOME
 SELECT * FROM Article WHERE pat_id = 'hong';
 --READ ONE
@@ -94,3 +94,26 @@ DELETE FROM Article WHERE hong = 'hong';
 SELECT art_seq,pat_id,title,content,regdate,readCount  FROM Article WHERE title LIKE '%안%';
 
 SELECT COUNT(*) AS count FROM Article;
+
+SELECT t2.*
+FROM (SELECT ROWNUM seq,t.* 
+FROM (SELECT * FROM ARTICLE ORDER BY art_seq DESC) t) t2
+WHERE t2.seq BETWEEN 11 AND 15;
+
+SELECT t2.*	FROM (SELECT ROWNUM seq,t.*	FROM (SELECT * FROM ARTICLE ORDER BY art_seq DESC) t) t2	WHERE t2.seq BETWEEN 1 AND 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
