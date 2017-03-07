@@ -22,12 +22,11 @@
 
 </table>
 
-<nav style="width: 500px;height:50px;margin:0 auto;background: gray; ">
-	<ul class="gnb" style="width: 100%;">
+<nav id="pagination">
+	<ul>
 	<c:if test="${requestScope.prevBlock  gt 0}">
 	<li>
-		<a href="${context}/board.do?action=list&page=articleList&pageNO
-		=${requestScope.prevBlock}">◀PREV</a>
+		<a href="${context}/board.do?action=list&page=articleList&pageNO=${requestScope.prevBlock}">◀PREV</a>
 	</li>
 	</c:if>
 	<c:forEach varStatus="i" begin="${requestScope.blockStart}" end="${requestScope.blockEnd}"
@@ -38,27 +37,18 @@
 				<a href="#"><font style="color:red">${i.index}</font></a>
 			</c:when>
 			<c:otherwise>
-				<a href="${context}/board.do?action=list&page=articleList&pageNO
-				=${i.index}">${i.index}</a>
+				<a href="${context}/board.do?action=list&page=articleList&pageNO=${i.index}">${i.index}</a>
 			</c:otherwise>
 		</c:choose>
 		</li>
 	</c:forEach>
 	<c:if test="${requestScope.nextBlock  le pageCount}">
 	<li>
-		<a href="${context}/board.do?action=list&page=articleList&pageNO
-		=${requestScope.nextBlock}">NEXT▶</a>
+		<a href="${context}/board.do?action=list&page=articleList&pageNO=${requestScope.nextBlock}">NEXT▶</a>
 	</li>
 	</c:if>
 	</ul>
 </nav> 
-<div>
-  총 페이지수${pageCount} </br>
-  이전블록시작페이지 ${prevBlock}</br>
-  현재블록시작페이지 ${blockStart}</br>
-  현재블록끝페이지 ${blockEnd}</br>
-  다음블록시작페이지 ${nextBlock}</br>
-</div >
 <div style="height:200px"></div>
 <script>
 $(function(){
@@ -67,5 +57,9 @@ $(function(){
 		.css('width','500px').css('margin-top','30px');
 	articleList.find('tr:nth-child(1)').find('th:nth-child(1)')
 	.attr('colspan','5').css('text-align','right');
+	var $pagination=$('#pagination');
+	$pagination.css('width','500px').css('height','50px').css('margin','0 auto').css('background','gray')
+	$pagination.find('ul').addClass('gnb');
+	$pagination.find('.gnb').css('width','100%');
 });
 </script>

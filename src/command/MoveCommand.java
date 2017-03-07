@@ -4,8 +4,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import command.Command;
-import handler.CommandHandler;
-public class MoveCommand extends Command implements CommandHandler{
+import handler.Commandable;
+public class MoveCommand extends Command implements Commandable{
 	public MoveCommand(String directory,String action,String page){
 		super.directory=directory;
 		super.action=action;

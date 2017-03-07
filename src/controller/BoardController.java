@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import serviceImpl.BoardServiceImpl;
 import util.DispatcherServlet;
+import util.Pagination;
 import util.Separator;
 import domain.ArticleBean;
+import handler.PageHandler;
 import service.BoardService;
 
 @WebServlet("/board.do")
@@ -21,59 +25,26 @@ public class BoardController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Separator.init(request, response);
 		ArticleBean bean=new ArticleBean();
+		Pagination page=new Pagination();
+		Map<String,String>params=new HashMap<>();
+		PageHandler handler=new PageHandler();
 		System.out.println("게시판 서블릿");
 		java.util.List<ArticleBean> list=new ArrayList<>();
 		service.BoardService service=BoardServiceImpl.getInstance();
 		switch (Separator.command.getAction()) {
 			case "move":DispatcherServlet.send(request, response);break;
 			case "list":
-			String strPageNO=request.getParameter("pageNO");
-			System.out.println("화면에서 넘어온 PAGE_NO :"+strPageNO);
-			int rowCount=5;
-			int pageNO=Integer.parseInt(strPageNO);
-			int pageStart=(pageNO-1)*rowCount+1;
-			int pageEnd=pageNO*rowCount;
-			int[] pageArr={pageStart,pageEnd};
-			int count=0;
-			try {
+				params.put("pageNO", request.getParameter("pageNO"));
+				params.put("count", String.valueOf(service.count()));
+				handler.process(params);
+				int[] pageArr={handler.getAttribute()[3],handler.getAttribute()[4]};
 				list=service.list(pageArr);
-				count = service.count();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-			int pageCount=0;
-			if(count%rowCount==0){
-				pageCount=count/rowCount;
-			}else{
-				pageCount=count/rowCount+1;
-			}
-			int blockSize=5;
-			int blockCount=pageCount/blockSize;
-			
-			int blockStart=pageNO-((pageNO-1)%blockSize);
-			int prevBlock=blockStart-blockSize;
-			int nextBlock=blockStart+blockSize;
-			int blockEnd=0;
-			blockEnd=blockCount;
-			System.out.println("블록이 항상 참이다: "+(blockStart + rowCount-1));
-			System.out.println("페이지카운트: "+pageCount);
-			if((blockStart+rowCount-1) < pageCount){
-				blockEnd=blockStart+blockSize-1;
-			}else{
-				blockEnd=pageCount;
-			}
-			request.setAttribute("count", count);
-			request.setAttribute("pageCount", pageCount);
-			request.setAttribute("list", list);
-			request.setAttribute("pageStart", pageStart);
-			request.setAttribute("pageEnd", pageEnd);
-			request.setAttribute("blockStart", blockStart);
-			request.setAttribute("blockEnd", blockEnd);
-			request.setAttribute("prevBlock", prevBlock);
-			request.setAttribute("nextBlock", nextBlock);
-			request.setAttribute("pageNO", pageNO);
+				String[]arr={"count","pageCount","pageNO","pageStart","pageEnd",
+						"blockStart","blockEnd","prevBlock","nextBlock"};
+				for(int i=0;i<9;i++){
+					request.setAttribute(arr[i],handler.getAttribute()[i] );
+				}
+				request.setAttribute("list", list);
 			break;
 			case "detail":
 				String seq=request.getParameter("seq");

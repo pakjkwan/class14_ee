@@ -1,5 +1,6 @@
 package daoImpl;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,7 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public List<ArticleBean> selectAll(int[] pageArr) throws Exception {
+	public List<ArticleBean> selectAll(int[] pageArr){
 		List<ArticleBean> list=new ArrayList<>();
 		ArticleBean bean=null;
 		String sql=String.format("SELECT t2.*"
@@ -82,19 +83,25 @@ public class BoardDAOImpl implements BoardDAO{
        +"\tWHERE t2.seq BETWEEN %s AND %s", String.valueOf(pageArr[0]),
        String.valueOf(pageArr[1]));
 		System.out.println("Board SQL :"+sql);
-		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
-				.getConnection().createStatement();
-		ResultSet rs=stmt.executeQuery(sql);
-		while(rs.next()){
-			bean=new ArticleBean();
-			bean.setContent(rs.getString("content"));
-			bean.setReadCount(rs.getString("readCount"));
-			bean.setRegdate(rs.getString("regDate"));
-			bean.setSeq(rs.getString("art_seq"));
-			bean.setTitle(rs.getString("title"));
-			bean.setId(rs.getString("pat_id"));
-			list.add(bean);
+		Statement stmt;
+		try {
+			stmt = DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
+					.getConnection().createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				bean=new ArticleBean();
+				bean.setContent(rs.getString("content"));
+				bean.setReadCount(rs.getString("readCount"));
+				bean.setRegdate(rs.getString("regDate"));
+				bean.setSeq(rs.getString("art_seq"));
+				bean.setTitle(rs.getString("title"));
+				bean.setId(rs.getString("pat_id"));
+				list.add(bean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
 		return list;
 	}
 
@@ -118,15 +125,22 @@ public class BoardDAOImpl implements BoardDAO{
 		return rs;
 	}
 	@Override
-	public int count() throws Exception {
+	public int count()  {
 		int count=0;
 		String sql="SELECT COUNT(*) AS count FROM Article";
-		Statement stmt=DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
-				.getConnection().createStatement();
-		ResultSet rs=stmt.executeQuery(sql);
-		if(rs.next()){
-			count=Integer.parseInt(rs.getString("COUNT"));
+		Statement stmt;
+		try {
+			stmt = DatabaseFactory.createDatabase(Vendor.ORACLE,Database.USERNAME, Database.PASSWORD)
+					.getConnection().createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
+			if(rs.next()){
+				count=Integer.parseInt(rs.getString("COUNT"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return count;
 	}
 

@@ -8,8 +8,8 @@ public interface BoardDAO {
 	public int insert(ArticleBean param)throws Exception;
 	public ArticleBean selectBySeq(ArticleBean param)throws Exception; 
 	public List<ArticleBean> selectByWord(String[] param)throws Exception;
-	public List<ArticleBean> selectAll(int[] pageArr)throws Exception;
+	public List<ArticleBean> selectAll(int[] pageArr);
 	public int update(ArticleBean param)throws Exception;
 	public int delete(ArticleBean param)throws Exception;
-	public int count() throws Exception;
+	public int count() ;
 }

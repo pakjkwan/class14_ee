@@ -42,7 +42,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<ArticleBean> list(int[] pageArr)throws Exception {
+	public List<ArticleBean> list(int[] pageArr) {
 		List<ArticleBean> list=new ArrayList<>();
 		list=dao.selectAll(pageArr);
 		System.out.println("=== 게시판 서비스 리스트==="+list);
